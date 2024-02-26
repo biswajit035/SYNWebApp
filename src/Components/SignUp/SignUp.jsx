@@ -21,7 +21,7 @@ const SignUp = () => {
     const handleClick = async (e) => {
         e.preventDefault()
         setLoading(true)
-        const response = await fetch(`https://employee-app-3tf1.onrender.com/auth/register`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

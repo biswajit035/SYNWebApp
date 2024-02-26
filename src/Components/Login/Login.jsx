@@ -8,6 +8,7 @@ import { logDOM } from '@testing-library/react';
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
+    const BACKEND_HOST = process.env.REACT_APP_BACKEND_HOST
 
     let navigate = useNavigate();
     const [data, setData] = useState({
@@ -18,7 +19,7 @@ const Login = () => {
     const chkToken = async () => {
         const token = Cookies.get("token");
         if (token) {
-            const tokenResponse = await fetch(`https://employee-app-3tf1.onrender.com/auth/verification`, {
+            const tokenResponse = await fetch(`${BACKEND_HOST}/auth/verification`, {
                 method: 'GET',
                 headers: {
                     // 'Content-Type': 'application/json',
@@ -33,13 +34,13 @@ const Login = () => {
 
     useEffect(() => {
         chkToken();
+        console.log(BACKEND_HOST);
     }, []);
 
     const handleClick =  async(e) => {
         e.preventDefault();
-        console.log("hellow");
         setLoading(true)
-        const response = await fetch(`https://employee-app-3tf1.onrender.com/auth/signin`, {
+        const response = await fetch(`${BACKEND_HOST}/auth/signin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

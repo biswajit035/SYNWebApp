@@ -12,7 +12,7 @@ const Dashboard = () => {
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
     const fetchData = async (token) => {
-        const tokenResponse = await fetch(`https://employee-app-3tf1.onrender.com/auth/verification`, {
+        const tokenResponse = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/auth/verification`, {
             method: 'GET',
             headers: {
                 // 'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ const Dashboard = () => {
         if (tokenResponse.status === 200) {
 
             const tokenJson = await tokenResponse.json();
-            const response = await fetch(`https://employee-app-3tf1.onrender.com/api/user`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/api/user`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
