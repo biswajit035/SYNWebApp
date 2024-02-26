@@ -11,7 +11,6 @@ const Dashboard = () => {
     let navigate = useNavigate();
     const [data, setData] = useState({});
     const [loading, setLoading] = useState(true);
-
     const fetchData = async (token) => {
         const tokenResponse = await fetch(`https://employee-app-3tf1.onrender.com/auth/verification`, {
             method: 'GET',
@@ -34,7 +33,7 @@ const Dashboard = () => {
             setData(json.data);
             setLoading(false)
         }
-        else{
+        else {
             navigate("/login")
         }
     }
@@ -46,7 +45,7 @@ const Dashboard = () => {
         fetchData(token);
     }, []);
 
-    
+
 
     return (
 
@@ -56,20 +55,22 @@ const Dashboard = () => {
                     User Dashboard
                 </div>
                 
-                    <Dropdown/>
+                <Dropdown />
             </div>
+            <div className="dash-body">
             {
                 loading ?
-                    "Loading"
+                    "Loading...."
                     :
-                    <div className="dash-body">
-                        <h1 className='dash-heading'>My Profile</h1>
-                        <div className="dash-main-body">
+                    <div className="dash-main-body">
+                            {/* <h1 className='dash-heading'>My Profile</h1> */}
                             <div className="row1">
                                 <div className="item-name">First Name:</div>
                                 <div className="item-content">{data.first_name}</div>
+                            </div>
+                            <div className="row1">
                                 <div className="item-name">Last Name:</div>
-                                <div className="item-content">{data.first_name}</div>
+                                <div className="item-content">{data.last_name}</div>
                             </div>
                             <div className="row2">
                                 <div className="item-name" style={{ paddingRight: "1rem" }}>Email:</div>
@@ -84,8 +85,8 @@ const Dashboard = () => {
                                 <div className="item-content">{data.address}</div>
                             </div>
                         </div>
-                    </div>
             }
+                    </div>
         </div>
     )
 }

@@ -16,13 +16,13 @@ function App() {
       {/* <UpdateDash/> */}
       {/* <ForgetPassword/> */}
       <Routes>
-      {/* client Side */}
-      <Route path="/" element={<Dashboard />}/>
-      <Route path="login" element={<Login/> } />
-      <Route path="signup" element={<SignUp/>} />
-      <Route path="reset" element={<ForgetPassword/> } />
-      <Route path="update" element={<UpdateDash/>  } />
-    </Routes>
+        {/* client Side */}
+        <Route path="/" element={<Dashboard />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="reset" element={<ForgetPassword />} />
+        <Route path="update" element={<UpdateDash />} />
+      </Routes>
     </div>
   );
 }

@@ -38,7 +38,7 @@ const UpdateDash = () => {
             const json = await response.json();
             setData(json.data);
         }
-        else{
+        else {
             navigate("/login")
         }
         setLoading(false)
@@ -51,7 +51,8 @@ const UpdateDash = () => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
 
-    const handleUpdate = async () => {
+    const handleUpdate = async (e) => {
+        e.preventDefault()
         setUloading(true)
         const response = await fetch(`https://employee-app-3tf1.onrender.com/api/user/edit`, {
             method: 'PUT',
@@ -71,7 +72,7 @@ const UpdateDash = () => {
         });
         // console.log(data);
         const json = await response.json();
-        if(response.status==200) navigate("/")
+        if (response.status == 200) navigate("/")
         setUloading(false)
     }
 
@@ -80,6 +81,7 @@ const UpdateDash = () => {
         if (!token) navigate("/login")
         //Runs only on the first render
         fetchData(token);
+
     }, []);
 
 
@@ -90,39 +92,39 @@ const UpdateDash = () => {
                 <div className="dashitems">
                     User Dashboard
                 </div>
-                <Dropdown/>
+                <Dropdown />
             </div>
             {
                 loading ?
-                "loading"
-                :
-                <>
-                <div className="update-dash-main">
-                <h1 className='dash-heading'>Update User's Details</h1>
-                <form action="" className='form-body'>
-                    <label htmlFor="">First Name</label>
-                    <input value={data.first_name} onChange={onChange} type="text" name='first_name' className='input-field' placeholder='Enter your First Name' required />
-                    <label htmlFor="">Last Name</label>
-                    <input type="text" name="last_name" value={data.last_name} onChange={onChange} className='input-field' placeholder='Enter your Last Name' required />
-                    
-                    <label htmlFor="">Email</label> 
-                    <input type="text" name="email" value={data.email} className='input-field' onChange={onChange} placeholder='Enter Your Email' required />
-               
-                    <label htmlFor="phone">Ph-No</label>
-                    <input type="tel" name="phone" value={data.phone} onChange={onChange} className='input-field' placeholder='Enter your Ph-no' required />
-                    <label htmlFor="">Address</label>
-                    <textarea className='input-field' name='address' value={data.address} onChange={onChange} required />
-                </form>
-            </div>
-            <button className="button-update" onClick={handleUpdate}>
-                {
-                    uloading?
-                    "Loading ..."
+                    "loading"
                     :
-                    "Update"
-                }
-                </button>
-                </>
+                    <>
+                        <div className="update-dash-content">
+                            <h1 className='dash-heading'>Update User's Details</h1>
+                            <form className='form-body' onSubmit={handleUpdate}>
+                                <label htmlFor="">First Name</label>
+                                <input value={data.first_name} onChange={onChange} type="text" name='first_name' className='input-field' placeholder='Enter your First Name' required />
+                                <label htmlFor="">Last Name</label>
+                                <input type="text" name="last_name" value={data.last_name} onChange={onChange} className='input-field' placeholder='Enter your Last Name' required />
+
+                                <label htmlFor="">Email</label>
+                                <input type="email" name="email" value={data.email} className='input-field' onChange={onChange} placeholder='Enter Your Email' required />
+
+                                <label htmlFor="phone">Ph-No</label>
+                                <input type="tel" name="phone" value={data.phone} onChange={onChange} className='input-field' placeholder='Enter your Ph-no' required pattern="[0-9]{10}" title="Enter exactly 10 digits"/>
+                                <label htmlFor="">Address</label>
+                                <textarea className='input-field' name='address' value={data.address} onChange={onChange} required />
+                                <button className="button-update">
+                                    {
+                                        uloading ?
+                                            "Loading ..."
+                                            :
+                                            "Update"
+                                    }
+                                </button>
+                            </form>
+                        </div>
+                    </>
             }
         </div>
     )

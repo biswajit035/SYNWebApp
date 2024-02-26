@@ -17,6 +17,9 @@ const ForgetPassword = () => {
     }
 
     const handleClick = async (e) => {
+        e.preventDefault()
+        console.log(data.email);
+
         setLoading(true)
         const response = await fetch(`https://employee-app-3tf1.onrender.com/auth/forgot-password`, {
             method: 'POST',
@@ -25,10 +28,11 @@ const ForgetPassword = () => {
             },
             body: JSON.stringify(
                 {
-                    email: data.username
+                    email: data.email
                 }
             )
         });
+        // console.log(response);
         const json = await response.json();
         alert("Password sent to your registered email");
         navigate("/login")
@@ -37,25 +41,21 @@ const ForgetPassword = () => {
 
     return (
         <div className='forgetpass-main'>
-            <div className="forgetpass-left">
-                <div className="signup-heading">Forget Password</div>
+            <div className="forgetpass">
+                <div className="forget-heading">Forget Password</div>
                 <div className="form-main-forget">
-                    <form action="" className='form-content'>
-                        <label htmlFor="">Email</label>
+                    <form className='form-content' onSubmit={handleClick}>
+                        {/* <label htmlFor="">Email</label> */}
                         <input type="text" name="email" className='input-field' placeholder='Enter Your Email' onChange={onChange} required />
-                        <div className='btn-signup' onClick={handleClick}>
+                        <button className='btn-signup'>
                             {
                                 loading?"Loading...":"Sent Password"
                             }
-                            </div>
+                            </button>
                     </form>
                 </div>
             </div>
-            <div className="forgetpass-right">
-                <div className="for-img">
-                    <img src={img1} alt="" className='forimg' />
-                </div>
-            </div>
+            
         </div>
     )
 }
