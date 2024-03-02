@@ -81,9 +81,9 @@ const Login = () => {
                     <div className="loginup-heading">Login</div>
                     <div className="form-main">
                         <form className='form-content' onSubmit={handleClick}>
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="username">Username <span className='redColor'>*</span></label>
                             <input type="email" id="username" name="username" className='input-field' onChange={onChange} placeholder='Enter Username' required />
-                            <label htmlFor="Password">Password</label>
+                            <label htmlFor="Password">Password <span className='redColor'>*</span></label>
                             <input type="password" name="password" className='input-field' onChange={onChange} placeholder='Enter password' required />
                             <Link className='forget-pass' to="/reset">Forget Password</Link>
                             <button type='submit' className='btn-signup' onSubmit={handleClick}>

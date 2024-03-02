@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Dropdown from '../Dropdown/DropDown';
+import Loader from '../Loader';
 
 
 
@@ -94,26 +95,34 @@ const UpdateDash = () => {
                 </div>
                 <Dropdown />
             </div>
+            <div className="dash-body">
             {
                 loading ?
-                    "loading"
+                <Loader/>
                     :
-                    <>
                         <div className="update-dash-content">
-                            <h1 className='dash-heading'>Update User's Details</h1>
-                            <form className='form-body' onSubmit={handleUpdate}>
+                            <form className='update-form-body' onSubmit={handleUpdate}>
+                            <h1 className='update-dash-heading'>Update User's Details</h1>
+                            <div className="row1">
                                 <label htmlFor="">First Name</label>
                                 <input value={data.first_name} onChange={onChange} type="text" name='first_name' className='input-field' placeholder='Enter your First Name' required />
+                            </div>
+                            <div className="row1">
                                 <label htmlFor="">Last Name</label>
                                 <input type="text" name="last_name" value={data.last_name} onChange={onChange} className='input-field' placeholder='Enter your Last Name' required />
-
+                            </div>
+                            <div className="row1">
                                 <label htmlFor="">Email</label>
                                 <input type="email" name="email" value={data.email} className='input-field' onChange={onChange} placeholder='Enter Your Email' required />
-
+                            </div>
+                            <div className="row1">
                                 <label htmlFor="phone">Ph-No</label>
                                 <input type="tel" name="phone" value={data.phone} onChange={onChange} className='input-field' placeholder='Enter your Ph-no' required pattern="[0-9]{10}" title="Enter exactly 10 digits"/>
+                            </div>
+                            <div className="row1">
                                 <label htmlFor="">Address</label>
                                 <textarea className='input-field' name='address' value={data.address} onChange={onChange} required />
+                            </div>
                                 <button className="button-update">
                                     {
                                         uloading ?
@@ -124,8 +133,8 @@ const UpdateDash = () => {
                                 </button>
                             </form>
                         </div>
-                    </>
             }
+            </div>
         </div>
     )
 }

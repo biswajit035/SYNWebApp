@@ -17,6 +17,7 @@ function App() {
       {/* <ForgetPassword/> */}
       <Routes>
         {/* client Side */}
+        {/* <Route path="/" element={<Dashboard />} /> */}
         <Route path="/" element={<Dashboard />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />

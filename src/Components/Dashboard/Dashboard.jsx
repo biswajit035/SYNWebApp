@@ -5,6 +5,7 @@ import { FaUser } from "react-icons/fa6";
 import Cookies from 'js-cookie';
 import { redirect } from 'react-router-dom';
 import Dropdown from '../Dropdown/DropDown';
+import Loader from '../Loader';
 
 
 const Dashboard = () => {
@@ -60,7 +61,7 @@ const Dashboard = () => {
             <div className="dash-body">
             {
                 loading ?
-                    "Loading...."
+                    <Loader/>
                     :
                     <div className="dash-main-body">
                             {/* <h1 className='dash-heading'>My Profile</h1> */}
