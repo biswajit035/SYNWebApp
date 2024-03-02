@@ -80,7 +80,6 @@ const Login = () => {
                 <div className="right-content">
                     <div className="loginup-heading">Login</div>
                     <div className="form-main">
-                        {BACKEND_HOST}
                         <form className='form-content' onSubmit={handleClick}>
                             <label htmlFor="username">Username <span className='redColor'>*</span></label>
                             <input type="email" id="username" name="username" className='input-field' onChange={onChange} placeholder='Enter Username' required />
