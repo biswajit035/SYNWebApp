@@ -21,7 +21,7 @@ const ForgetPassword = () => {
         console.log(data.email);
 
         setLoading(true)
-        const response = await fetch(`https://employee-app-3tf1.onrender.com/auth/forgot-password`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_HOST}/auth/forgot-password`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
